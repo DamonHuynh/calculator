@@ -1,24 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Playpen+Sans:wght@700&family=Roboto+Mono&family=Roboto:ital,wght@0,100;0,300;0,700;1,100;1,300&display=swap');
 body{
     width: 400px;
-    height: 1000px;
+    height: 750px;
     display: flex;
     flex-direction: column;
-    background-color: #776B5D;
+    background-color: #1C1C1C;
+    justify-content: center;
+    font-family: Roboto;
+    
 }
 
 .btnCont{
    display: flex;
+   
+}
+.calculator{
+    border: 2px solid white;
 }
 
 button{
     flex-grow: 1;
     height: 100px;
+    width: 100px;
     
 }
 
  .nums, .ops, #decimal {
-    max-width: 100px;
+    max-width: 110px;
+    font-size: 30px;
+    color: white;
 }
+#decimal{
+    background-color:#505050
+}
+.ops{
+    background-color: #FF9500
+}
+
+.nums{
+    background-color: #505050;
+    ;
+}
+
 
 #delete, #clear {
     max-width: 200px;
@@ -27,5 +50,8 @@ button{
 #display{
     height: 100px;
     width: 400px;
-    text-align: left;
+    text-align: right;
+    color: #D4D4D2;
+    font-size: 50px;
+
 }
