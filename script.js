@@ -35,18 +35,20 @@ function divide(num1, num2){
 
 
 
-const numBtns = document.querySelectorAll(".nums");
-const opBtns = document.querySelectorAll(".ops");
-const display = document.getElementById("display");
+
+let equation = [];
+let result;
 
 function displayValues(){
+    const numBtns = document.querySelectorAll(".nums");
+    const opBtns = document.querySelectorAll(".ops");
+    const display = document.getElementById("display");
     let value = "";
-    let equation = [];
-    let result;
 
     numBtns.forEach(btn => {
         btn.addEventListener("click",()=> {
             value += btn.value;
+            display.textContent = value;
             console.log(equation);
             
         });
@@ -54,22 +56,33 @@ function displayValues(){
     
     opBtns.forEach(btn => {
         btn.addEventListener("click",()=> {
+            
             equation.push(value);
             value = "";
             equation.push(btn.value);
-            console.log(equation);
-            if(equation.length === 4){
-                result = operate(Number(equation[0]), equation[1] ,Number(equation[2]));
-                display.textContent = result;
-                console.log(result);
-                //clears out equation[] so its just the last operator
-                equation = equation.slice(equation.length - 1, equation.length);
-                equation.unshift(result);
-                console.log(equation);
-            }
+            
+            if(btn.value == "="){
+                calculateFromArray();
+                equation.pop();
+                equation.pop();
+                value = result;
 
+            }
+            if(equation.length === 4){
+               calculateFromArray();
+            }
+            console.log(equation);
         });
     }); 
+}
+function calculateFromArray(){
+    result = operate(Number(equation[0]), equation[1] ,Number(equation[2]));
+    display.textContent = result;
+    console.log(result);
+    //clears out equation[] so its just the last operator
+    equation = equation.slice(equation.length - 1, equation.length);
+    equation.unshift(result);
+    
 }
 
 displayValues();
