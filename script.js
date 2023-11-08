@@ -42,6 +42,9 @@ let result;
 function displayValues(){
     const numBtns = document.querySelectorAll(".nums");
     const opBtns = document.querySelectorAll(".ops");
+    const clearBtn = document.getElementById("clear");
+    const removeBtn = document.getElementById("delete");
+    const decimalBtn = document.getElementById(".");
     const display = document.getElementById("display");
     let value = "";
 
@@ -77,8 +80,6 @@ function displayValues(){
                     value = result;
 
                 }
-    
-
             }
             if(equation.length === 4){
                calculateFromArray();
@@ -86,7 +87,31 @@ function displayValues(){
             console.log(equation);
         });
     }); 
+
+    clearBtn.addEventListener("click", () => {
+        value = "";
+        display.textContent = value;
+        equation = [];
+    });
+
+    removeBtn.addEventListener("click", () => {
+        value = value.slice(0, value.length - 1);
+        display.textContent = value;
+        
+    });
+
+    decimalBtn.addEventListener("click", () => {
+        if(!value.includes(".")){
+            value += decimalBtn.id;
+            display.textContent = value;
+        }
+        
+    });
+
+    
 }
+
+
 function calculateFromArray(){
     result = operate(Number(equation[0]), equation[1] ,Number(equation[2]));
     display.textContent = result;
