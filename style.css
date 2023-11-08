@@ -1,0 +1,31 @@
+body{
+    width: 400px;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    background-color: #776B5D;
+}
+
+.btnCont{
+   display: flex;
+}
+
+button{
+    flex-grow: 1;
+    height: 100px;
+    
+}
+
+ .nums, .ops, #decimal {
+    max-width: 100px;
+}
+
+#delete, #clear {
+    max-width: 200px;
+}
+
+#display{
+    height: 100px;
+    width: 400px;
+    text-align: left;
+}

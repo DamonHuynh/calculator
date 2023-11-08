@@ -44,7 +44,7 @@ function displayValues(){
     const opBtns = document.querySelectorAll(".ops");
     const clearBtn = document.getElementById("clear");
     const removeBtn = document.getElementById("delete");
-    const decimalBtn = document.getElementById(".");
+    const decimalBtn = document.getElementById("decimal");
     const display = document.getElementById("display");
     let value = "";
 
@@ -102,7 +102,7 @@ function displayValues(){
 
     decimalBtn.addEventListener("click", () => {
         if(!value.includes(".")){
-            value += decimalBtn.id;
+            value += decimalBtn.value;
             display.textContent = value;
         }
         
