@@ -47,8 +47,16 @@ function displayValues(){
 
     numBtns.forEach(btn => {
         btn.addEventListener("click",()=> {
-            value += btn.value;
+            if(!value){
+                value = "";
+                value += btn.value;
+            }
+            else{
+                value += btn.value;
+            }
             display.textContent = value;
+            
+            
             console.log(equation);
             
         });
@@ -56,16 +64,20 @@ function displayValues(){
     
     opBtns.forEach(btn => {
         btn.addEventListener("click",()=> {
+            if(value){
+                equation.push(value);
+                value = "";
+                equation.push(btn.value);
             
-            equation.push(value);
-            value = "";
-            equation.push(btn.value);
-            
-            if(btn.value == "="){
-                calculateFromArray();
-                equation.pop();
-                equation.pop();
-                value = result;
+                //make sure that "num = " is inputted
+                if(btn.value == "=" && equation.length > 1){
+                    calculateFromArray();
+                    equation.pop();
+                    equation.pop();
+                    value = result;
+
+                }
+    
 
             }
             if(equation.length === 4){
