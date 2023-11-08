@@ -33,44 +33,40 @@ function divide(num1, num2){
     return num1 / num2;
 }
 
+
+
 const numBtns = document.querySelectorAll(".nums");
 const opBtns = document.querySelectorAll(".ops");
 const display = document.getElementById("display");
 
 function displayValues(){
     let value = "";
-    let operator = "";
     let equation = [];
-    let temp;
     let result;
 
     numBtns.forEach(btn => {
         btn.addEventListener("click",()=> {
             value += btn.value;
-            console.log(value);
             console.log(equation);
-            if (equation.length == 2){
-                result = (operate(Number(equation[0]), equation[1], Number(value)));
-                display.textContent = result
-                equation.pop();
-                equation.pop();
-                equation.push(result);
-                
-            }
+            
         });
     }); 
     
     opBtns.forEach(btn => {
         btn.addEventListener("click",()=> {
-            temp = value;
+            equation.push(value);
             value = "";
-            operator = btn.value;
-            console.log(operator);
-            if (!result){
-                equation.push(temp);
-            }
-            equation.push(operator);
+            equation.push(btn.value);
             console.log(equation);
+            if(equation.length === 4){
+                result = operate(Number(equation[0]), equation[1] ,Number(equation[2]));
+                display.textContent = result;
+                console.log(result);
+                //clears out equation[] so its just the last operator
+                equation = equation.slice(equation.length - 1, equation.length);
+                equation.unshift(result);
+                console.log(equation);
+            }
 
         });
     }); 
